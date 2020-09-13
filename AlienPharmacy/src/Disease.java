@@ -1,3 +1,10 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.ArrayList;
 
 public class Disease {

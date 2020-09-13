@@ -1,6 +1,17 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.*;
 
 public class Prescription {
+	/*
+	 * Prescriptions are written by Doctors for Patients if they are diagnosed with Diseases.
+	 * They have a unique PxId, a Date stamp, an ArrayList of Medications, and the Doctor and Patient via composition.
+	 */
 	private int id;
 	private int pxId;
 	private Date pxDate;
@@ -65,7 +76,7 @@ public class Prescription {
 	public boolean equals(Object obj) {
 		if (obj instanceof Prescription) {
 			Prescription otherPx = (Prescription) obj;
-			return getPxId()==otherPx.getPxId() && getPxPatient() == otherPx.getPxPatient() && getPxDoctor() == otherPx.getPxDoctor();
+			return getPxId()==otherPx.getPxId() && getPxPatient().equals(otherPx.getPxPatient()) && getPxDoctor().equals(otherPx.getPxDoctor());
 		}
 		else {
 			return false;

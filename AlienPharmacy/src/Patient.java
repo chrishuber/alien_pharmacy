@@ -1,6 +1,18 @@
+/* 
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.ArrayList;
 
 public class Patient extends Alien {
+	/*
+	 * Patients are a subclass of Alien that do not work at Pharmacies.
+	 * They can be diagnosed with Diseases by a Doctor and be written Prescriptions.
+	 * They can check in at Pharmacies with Prescriptions, buy Medications, and take Medications.
+	 */
 	private int insuranceId;
 	private int[] medAllergies;
 	
@@ -40,15 +52,15 @@ public class Patient extends Alien {
 		}
 	}
 	
-	public void check_in(Pharmacy inPharmacy) {
+	public void checkIn(Pharmacy inPharmacy) {
 		System.out.println(getFirstName() + " " + getLastName() + " has checked in at " + inPharmacy.getLocalName());
 	}
 	
-	public void buy_medication(Medication inMedication, int quantity) {
+	public void buyMedication(Medication inMedication, int quantity) {
 		System.out.println(getFirstName() + " " + getLastName() + " has bought " + quantity + " units of " + inMedication.getName());
 	}
 	
-	public void take_medication(Medication inMedication) {
+	public void takeMedication(Medication inMedication) {
 		System.out.println(getFirstName() + " " + getLastName() + " has taken " + inMedication.getName());
 	}
 }

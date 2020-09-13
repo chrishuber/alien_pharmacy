@@ -1,5 +1,16 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
 
 public abstract class Alien {
+	/*
+	 * Abstract class for all creatures containing base information that all inherit.
+	 * All aliens are from a planet and are a species using composition.
+	 */
+	
 	private int id;
 	private String firstName;
 	private String lastName;

@@ -1,10 +1,25 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class Doctor extends Alien {
+	/*
+	 * Doctors are a subclass of Alien that do not work at Pharmacies.
+	 * They can diagnose patients and write prescriptions.
+	 * Some doctors have been known to write prescriptions for restricted medications for unsavory reasons. 
+	 * If this occurs and a patient has adverse affects, they may become banned.
+	 */
 	private String areaofPractice;
 	private boolean isBanned; 
-
+	private Random rand = new Random();
+	
 	public Doctor(int inID, String inFirstName, String inLastName, String inAddress, String inCity, Planet inPlanet, String areaofPractice, boolean isBanned) {
 		super(inID, inFirstName, inLastName, inAddress, inCity, inPlanet);
 		this.areaofPractice = areaofPractice;
@@ -46,12 +61,13 @@ public class Doctor extends Alien {
 	
 	public Prescription writePx(Patient inPatient, ArrayList<Medication> medications) {
 		Date stardate = new Date();
-		// need to make PxId a static incrementing var
+		// need to make PxId a static incrementing var, for now use Random
+		int randPxNum = rand.nextInt(9999-1000)+1000;
 		System.out.println("Doctor " + getLastName() + " has written a prescription for " + inPatient.getFirstName() + " " + inPatient.getLastName());
-		return new Prescription(5678, stardate, inPatient, this, medications);
+		return new Prescription(randPxNum, stardate, inPatient, this, medications);
 	}
 	
-	public void getBanned(Medication inMedication) {
+	public void becomeBanned(Medication inMedication) {
 		isBanned = true;
 		System.out.println("Doctor " + getLastName() + " has been banned for illicit prescription of " + inMedication.getName() + "!");
 	}

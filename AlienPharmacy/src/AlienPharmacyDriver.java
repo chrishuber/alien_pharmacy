@@ -1,7 +1,17 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.*;
 
 public class AlienPharmacyDriver {
-
+	// M2 HOMEWORK ENUM
+	public enum PlanetSize {SMALL, MEDIUM, LARGE};
+	public enum Terraform {VOLCANIC, AQUATIC, ARBOREAL, NAXXOUS, ETHEREAL};
+	
 	public static void main(String[] args) {
 		/* INITIALIZATIONS */
 		System.out.println("------------------------");
@@ -9,12 +19,13 @@ public class AlienPharmacyDriver {
 		System.out.println("------------------------");
 		
 		// instantiate a Planet
+		// M2 HOMEWORK ENUM
 		// "We all come from somewhere. We carry that place with us wherever we go." -Saru, Star Trek: Discovery
-		Planet planet_01 = new Planet(1, "Iferysia", "A hot desert world populated with sandworms and rock creatures.");
+		Planet planet_01 = new Planet(1, "Iferysia", "A hot desert world populated with sandworms and rock creatures.", Planet.PlanetSize.MEDIUM, Planet.Terraform.VOLCANIC);
 		System.out.println(planet_01);
 		
 		// instantiate another Planet
-		Planet planet_02 = new Planet(2, "Al'Samik", "An aquatic world teeming with hundreds of species and many cross-species diseases.");
+		Planet planet_02 = new Planet(2, "Al'Samik", "An aquatic world teeming with hundreds of species and many cross-species diseases.", Planet.PlanetSize.SMALL, Planet.Terraform.AQUATIC);
 		System.out.println(planet_02);
 		
 		// instantiate a Species
@@ -67,7 +78,7 @@ public class AlienPharmacyDriver {
 		
 		// instantiate a Medication
 		ArrayList<Medication> contraindications_01 = new ArrayList<Medication>();
-		Medication med_01 = new Medication(10001, "Squirrel Juice", "A distillate of a creature found on the forest planet Sturgos used to treat mild pain", contraindications_01);
+		Medication med_01 = new Medication(10006, "Squirrel Juice", "A distillate of a creature found on the forest planet Sturgos used to treat mild pain", contraindications_01);
 		System.out.println(med_01);
 		
 		// instantiate a second Medication with an upcoming contraindication
@@ -104,11 +115,13 @@ public class AlienPharmacyDriver {
 		Medication med_07 = new Buzzies(20002, "QBuzz", "WARNING: Abuse potential. Treats combustive temperature dysregulation.", contraindications_07, 2, med_05);
 		System.out.println(med_07);
 		
+		
+		
 		// instantiate a Disease
 		ArrayList<Species> species_list_01 = new ArrayList<Species>();
 		species_list_01.add(species_01);
 		species_list_01.add(species_02);
-		Disease disease_01 = new Disease(9001, "Sandies", "Causes sand to come through joints and exoskeleton plating causing irritation.", species_list_01);
+		Disease disease_01 = DiseaseFactory.newDisease(9001, "Sandies", "Causes sand to come through joints and exoskeleton plating causing irritation.", species_list_01);
 		
 		// instantiate another Disease
 		ArrayList<Species> species_list_02 = new ArrayList<Species>();
@@ -116,7 +129,7 @@ public class AlienPharmacyDriver {
 		species_list_01.add(species_03);
 		species_list_01.add(species_04);
 		species_list_01.add(species_05);
-		Disease disease_02 = new Disease(9002, "Zyxxa Spots", "Characterized by high ichor temperature and fatigue and unmistakeable green and purple spots.", species_list_02);
+		Disease disease_02 = DiseaseFactory.newDisease(9002, "Zyxxa Spots", "Characterized by high ichor temperature and fatigue and unmistakeable green and purple spots.", species_list_02);
 		
 		// instantiate another Disease
 		ArrayList<Species> species_list_03 = new ArrayList<Species>();
@@ -125,14 +138,14 @@ public class AlienPharmacyDriver {
 		species_list_01.add(species_03);
 		species_list_01.add(species_04);
 		species_list_01.add(species_05);
-		Disease disease_03 = new Disease(9003, "Hopping Madness", "Causes infected alien to start hopping up and down and screaming uncontrollably in periodic bursts.", species_list_03);
+		Disease disease_03 = DiseaseFactory.newDisease(9003, "Hopping Madness", "Causes infected alien to start hopping up and down and screaming uncontrollably in periodic bursts.", species_list_03);
 
 		// instantiate another Disease
 		ArrayList<Species> species_list_04 = new ArrayList<Species>();
 		species_list_01.add(species_02);
 		species_list_01.add(species_03);
 		species_list_01.add(species_05);
-		Disease disease_04 = new Disease(9003, "Melting Plague", "Infected alien suddenly melts into a puddle of goo. Highly contagious. Fatal without prompt treatment.", species_list_04);
+		Disease disease_04 = DiseaseFactory.newDisease(9003, "Melting Plague", "Infected alien suddenly melts into a puddle of goo. Highly contagious. Fatal without prompt treatment.", species_list_04);
 
 		// instantiate another Disease
 		ArrayList<Species> species_list_05 = new ArrayList<Species>();
@@ -140,7 +153,7 @@ public class AlienPharmacyDriver {
 		species_list_01.add(species_02);
 		species_list_01.add(species_04);
 		species_list_01.add(species_05);
-		Disease disease_05 = new Disease(9003, "Combustive Temperature Dysregulation", "Causes alien to explode if ichor temperature gets too high. Fatal if not treated in time.", species_list_04);
+		Disease disease_05 = DiseaseFactory.newDisease(9003, "Combustive Temperature Dysregulation", "Causes alien to explode if ichor temperature gets too high. Fatal if not treated in time.", species_list_04);
 		
 		// instantiate a Prescription
 		Date stardate = new Date();
@@ -196,10 +209,16 @@ public class AlienPharmacyDriver {
 		// Medication >> RestrictedMedication >> Fuzzies
 		test_meds.add(med_06);
 		
+		// M2 HOMEWORK STATIC
+		Pharmacist.displayAvailablePharmacistCount();
+		
 		// hire emp_01 and pharmacist_01 at pharmacy_01 using downcasting
 		pharmacy_01.hire((Employee)aliens.get(3));
 		pharmacy_01.hire((Employee)aliens.get(4));
-
+		
+		// M2 HOMEWORK STATIC
+		Pharmacist.displayAvailablePharmacistCount();
+		
 		// use new Employee ArrayList assignment from Pharmacy object to call Employee methods
 		pharmacy_01.getEmployees().get(0).turnLightsOn();
 		pharmacy_01.getEmployees().get(0).sweepFloor();
@@ -226,22 +245,33 @@ public class AlienPharmacyDriver {
 		Prescription PX_02 = doctor_a.writePx(patient_b, patient_b_meds);
 		
 		// patients check in to pharmacy and get prescriptions filled
-		patient_a.check_in(pharmacy_01);
-		PX_01.processPx(pharmacy_01, (Pharmacist)aliens.get(4));
+		patient_a.checkIn(pharmacy_01);
+		// downcast to get Pharmacist from ArrayList
+		Pharmacist pharmacist_alpha = (Pharmacist)aliens.get(4);
+		pharmacist_alpha.verifyPxMeds(PX_01);
+		pharmacist_alpha.fillPx(PX_01);
+		PX_01.processPx(pharmacy_01, pharmacist_alpha);
 		PX_01.calculateBill();
-		patient_a.buy_medication(test_meds.get(0), 10);
-		patient_a.take_medication(test_meds.get(0));
+		patient_a.buyMedication(test_meds.get(0), 10);
+		patient_a.takeMedication(test_meds.get(0));
 		
-		patient_b.check_in(pharmacy_01);
-		PX_02.processPx(pharmacy_01, (Pharmacist)aliens.get(4));
-		patient_b.buy_medication(test_meds.get(4), 5);
-		patient_b.take_medication(test_meds.get(4));
+		patient_b.checkIn(pharmacy_01);
+		PX_02.processPx(pharmacy_01, pharmacist_alpha);
+		pharmacist_alpha.verifyPxMeds(PX_01);
+		pharmacist_alpha.fillPx(PX_01);
+		patient_b.buyMedication(test_meds.get(4), 5);
+		patient_b.takeMedication(test_meds.get(4));
 
 		Fuzzies fuzz_a = (Fuzzies) test_meds.get(4);
 		fuzz_a.causeAddiction();
 		fuzz_a.causeOverdose();
 		
-		doctor_a.getBanned(test_meds.get(4));
+		doctor_a.becomeBanned(test_meds.get(4));
+		
+		// M2 HOMEWORK COMPARABLE - note that Squirrel Juice was instantiated first but gets sorted by ID
+		System.out.println(test_meds);
+		Collections.sort(test_meds);
+		System.out.println(test_meds);
 	}
 
 }

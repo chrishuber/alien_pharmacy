@@ -1,7 +1,19 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.*;
 
 // TO DO: add queue for customers in line to be attended to (possibly with a timer)
 public class Pharmacy {
+	/*
+	 * Pharmacies are where Presciptions are filled and where Pharmacists and Employees work.
+	 * They exist on a specific Planet and have an ArrayList of employees.
+	 * They can hire and fire employees and have sales.
+	 */
 	private int id;
 	private String localName;
 	private String address;
@@ -92,11 +104,19 @@ public class Pharmacy {
 		employees = getEmployees();
 		employees.add(inEmployee);
 		System.out.println(getLocalName() + " has hired " + inEmployee.getClass().getName() + " " + inEmployee.getFirstName() + " " + inEmployee.getLastName());
+		// M2 HOMEWORK STATIC
+		if (inEmployee.getClass().getName() == "Pharmacist") {
+			Pharmacist.decreaseAvailablePharmacistCount();
+		}
 	}
 	
 	// TO DO: implement functionality
 	public void fire(Employee inEmployee) {
 		System.out.println(getLocalName() + " has fired " + inEmployee.getClass().getName() + " " + inEmployee.getFirstName() + " " + inEmployee.getLastName());
+		// M2 HOMEWORK STATIC
+		if (inEmployee.getClass().getName() == "Pharmacist") {
+			Pharmacist.increaseAvailablePharmacistCount();
+		}
 	}
 	
 	public void haveSale() {

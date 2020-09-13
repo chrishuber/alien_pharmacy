@@ -1,6 +1,17 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.*;
 
-public class Medication {
+public class Medication implements Comparable<Medication> {
+	/*
+	 * Medication is a generic class for all medications which is used for most drugs.
+	 * Each medication contains an ArrayList of other medications it is contraindicated against.
+	 */
 	private int id;
 	private String name;
 	private ArrayList<Medication> contraindications;
@@ -47,10 +58,21 @@ public class Medication {
 	public boolean equals(Object obj) {
 		if (obj instanceof Medication) {
 			Medication otherMedication = (Medication) obj;
-			return getId()==otherMedication.getId() && getContraindications() == otherMedication.getContraindications();
+			return getId()==otherMedication.getId() && getContraindications().equals(otherMedication.getContraindications());
 		}
 		else {
 			return false;
 		}
+	}
+	
+	@Override
+	public int compareTo(Medication inMed) {
+		if (id > inMed.id) {
+			return 1;
+		}
+		else if (id < inMed.id) {
+			return -1;
+		}
+		return 0;
 	}
 }

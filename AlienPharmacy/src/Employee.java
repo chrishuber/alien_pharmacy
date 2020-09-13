@@ -1,5 +1,15 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
 
 public class Employee extends Alien {
+	/*
+	 * Employees are a generic class for workers but may be instaniated as generic laborers.
+	 * Generic employees perform menial duties and are employed by Pharmacies.
+	 */
 	private Pharmacy pharmacy;
 	private int salary;
 		

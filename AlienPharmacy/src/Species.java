@@ -1,5 +1,17 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
 
 public class Species {
+	/*
+	 * Species is an attribute object that belongs to an Alien.
+	 * It affects what medications the Alien can take.
+	 * A species may develop immunities or vulnerabilities to diseases over time.
+	 * A species may go extinct if a disease kills all of its Aliens.
+	 */
 	private int id;
 	private String name;
 	private String description;

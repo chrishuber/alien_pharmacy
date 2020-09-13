@@ -1,14 +1,35 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.Random;
 
 public class Planet {
+	// M2 HOMEWORK ENUM
+	public enum PlanetSize {SMALL, MEDIUM, LARGE};
+	public enum Terraform {VOLCANIC, AQUATIC, ARBOREAL, NAXXOUS, ETHEREAL};
+	
 	private int id;
 	private String name;
 	private String description;
-	
-	public Planet(int inId, String inName, String inDescription) {
+	// M2 HOMEWORK ENUM
+	private PlanetSize planetSize;
+	private Terraform terraform;
+
+	// M2 HOMEWORK ENUM
+	public Planet(int inId, String inName, String inDescription, PlanetSize inPlanetSize, Terraform inTerraform) {
+		/*
+		 * Planets are entities which help identify the location of Pharmacies and Aliens.
+		 * They have names and descriptions.
+		 */
 		this.id = inId;
 		this.name = inName;
 		this.description = inDescription;
+		this.planetSize = inPlanetSize;
+		this.terraform = inTerraform;
 	}
 	
 	public int getId() {
@@ -29,10 +50,24 @@ public class Planet {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	// M2 HOMEWORK ENUM
+	public PlanetSize getPlanetSize() {
+		return planetSize;
+	}
+	public void setPlanetSize(PlanetSize planetSize) {
+		this.planetSize = planetSize;
+	}
+	public Terraform getTerraform() {
+		return terraform;
+	}
+	public void setTerraform(Terraform terraform) {
+		this.terraform = terraform;
+	}
+	
+	// M2 HOMEWORK ENUM USE
 	@Override
 	public String toString() {
-		return "Planet " + getName() + " " + " (ID: " + getId() + ") : " + getDescription();
+		return "Planet " + getName() + " CLASS " + getPlanetSize() + " " + getTerraform() + " (ID: " + getId() + ") : " + getDescription();
 	}
 	
 	@Override

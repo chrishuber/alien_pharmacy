@@ -1,6 +1,17 @@
+/*
+ * Chris Huber <chuber2@mail.ccsf.edu>
+ * CS211S, Jessica Masters
+ * 09/07/2020
+ * Assignment One: Class Design
+ */
+
 import java.util.ArrayList;
 
 public class Nargles extends RestrictedMedication {
+	/*
+	 * Nargles are traded on the black market for recreational use and are thus a regulated medication.
+	 * Nargles can cause an overdose, but do have an antidote.
+	 */
 	private Medication antidote;
 	
 	public Nargles(int inId, String inName, String inDescription, ArrayList<Medication> inContraindications, int inLevel, Medication inAntidote) {
@@ -31,6 +42,7 @@ public class Nargles extends RestrictedMedication {
 		}
 	}
 	
+	// TO DO: make these methods unique, possibly cause side effects, etc.
 	public void causeAddiction() {
 		System.out.println("This patient is now addicted to Nargles!");
 	}
