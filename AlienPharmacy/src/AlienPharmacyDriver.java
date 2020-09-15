@@ -8,10 +8,6 @@
 import java.util.*;
 
 public class AlienPharmacyDriver {
-	// M2 HOMEWORK ENUM
-	public enum PlanetSize {SMALL, MEDIUM, LARGE};
-	public enum Terraform {VOLCANIC, AQUATIC, ARBOREAL, NAXXOUS, ETHEREAL};
-	
 	public static void main(String[] args) {
 		/* INITIALIZATIONS */
 		System.out.println("------------------------");
@@ -21,11 +17,11 @@ public class AlienPharmacyDriver {
 		// instantiate a Planet
 		// M2 HOMEWORK ENUM
 		// "We all come from somewhere. We carry that place with us wherever we go." -Saru, Star Trek: Discovery
-		Planet planet_01 = new Planet(1, "Iferysia", "A hot desert world populated with sandworms and rock creatures.", Planet.PlanetSize.MEDIUM, Planet.Terraform.VOLCANIC);
+		Planet planet_01 = new Planet(1, "Iferysia", "A hot desert world populated with sandworms and rock creatures.", Planet.PlanetMass.NORMAL, Planet.Terraform.VOLCANIC);
 		System.out.println(planet_01);
 		
 		// instantiate another Planet
-		Planet planet_02 = new Planet(2, "Al'Samik", "An aquatic world teeming with hundreds of species and many cross-species diseases.", Planet.PlanetSize.SMALL, Planet.Terraform.AQUATIC);
+		Planet planet_02 = new Planet(2, "Al'Samik", "An aquatic world teeming with hundreds of species and many cross-species diseases.", Planet.PlanetMass.DENSE, Planet.Terraform.AQUATIC);
 		System.out.println(planet_02);
 		
 		// instantiate a Species

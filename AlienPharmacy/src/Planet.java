@@ -9,18 +9,41 @@ import java.util.Random;
 
 public class Planet {
 	// M2 HOMEWORK ENUM
-	public enum PlanetSize {SMALL, MEDIUM, LARGE};
-	public enum Terraform {VOLCANIC, AQUATIC, ARBOREAL, NAXXOUS, ETHEREAL};
+	public enum PlanetMass {
+		DENSE("D"), NORMAL("N"), LOOSE("L");
+		
+		private String pMass;
+		
+		private PlanetMass(String pMass) {
+			this.pMass = pMass;
+		}
+		
+		public String getPmass() {
+			return pMass;
+		}
+	};
+	public enum Terraform {VOLCANIC("VLC"), AQUATIC("AQC"), ARBOREAL("ARB"), NAXXOUS("NAX"), ETHEREAL("ETH");
+		
+		private String tForm;
+		
+		private Terraform(String tForm) {
+			this.tForm = tForm;
+		}
+		
+		public String getTform() {
+			return tForm;
+		}
+	};
 	
 	private int id;
 	private String name;
 	private String description;
 	// M2 HOMEWORK ENUM
-	private PlanetSize planetSize;
+	private PlanetMass planetMass;
 	private Terraform terraform;
 
 	// M2 HOMEWORK ENUM
-	public Planet(int inId, String inName, String inDescription, PlanetSize inPlanetSize, Terraform inTerraform) {
+	public Planet(int inId, String inName, String inDescription, PlanetMass inPlanetMass, Terraform inTerraform) {
 		/*
 		 * Planets are entities which help identify the location of Pharmacies and Aliens.
 		 * They have names and descriptions.
@@ -28,7 +51,7 @@ public class Planet {
 		this.id = inId;
 		this.name = inName;
 		this.description = inDescription;
-		this.planetSize = inPlanetSize;
+		this.planetMass = inPlanetMass;
 		this.terraform = inTerraform;
 	}
 	
@@ -51,23 +74,18 @@ public class Planet {
 		this.description = description;
 	}
 	// M2 HOMEWORK ENUM
-	public PlanetSize getPlanetSize() {
-		return planetSize;
-	}
-	public void setPlanetSize(PlanetSize planetSize) {
-		this.planetSize = planetSize;
+	public PlanetMass getPlanetMass() {
+		return planetMass;
 	}
 	public Terraform getTerraform() {
 		return terraform;
 	}
-	public void setTerraform(Terraform terraform) {
-		this.terraform = terraform;
-	}
+
 	
 	// M2 HOMEWORK ENUM USE
 	@Override
 	public String toString() {
-		return "Planet " + getName() + " CLASS " + getPlanetSize() + " " + getTerraform() + " (ID: " + getId() + ") : " + getDescription();
+		return "Planet " + getName() + " CLASS " + planetMass.getPmass() + terraform.getTform() + getId() + " : " + getDescription();
 	}
 	
 	@Override
