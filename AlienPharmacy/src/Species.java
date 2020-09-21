@@ -15,11 +15,35 @@ public class Species {
 	private int id;
 	private String name;
 	private String description;
+	private String language;
+	// M3 USING STRATEGY
+	private SpeciesEvolver speciesEvolver;
+	
+	private Species(SpeciesBuilder builder) {
+		this.id = builder.id;
+		this.name = builder.name;
+		this.description = builder.description;
+		this.language = builder.language;
+	}
 
-	public Species(int inId, String inName, String inDescription) {
-		this.id = inId;
-		this.name = inName;
-		this.description = inDescription;
+	public static class SpeciesBuilder {
+		private int id;
+		private String name, description, language;
+		
+		public SpeciesBuilder(int id, String name, String description) {
+			this.id = id;
+			this.name = name;
+			this.description = description;
+		}
+		
+		public SpeciesBuilder language(String var) {
+			this.language = var;
+			return this;
+		}
+		
+		public Species build() {
+			return new Species(this);
+		}
 	}
 	
 	public int getId() {
@@ -40,10 +64,23 @@ public class Species {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getLanguage() {
+		if (this.language == null) {
+			return "<still unknown>";
+		}
+		return language;
+	}
+	public void setLanguage(String inLanguage) {
+		this.language = inLanguage;
+	}
+	// M3 USING STRATEGY
+	public void evolve() {
+		this.speciesEvolver.evolve();
+	}
 	
 	@Override
 	public String toString() {
-		return "Species " + getName() + " " + " (ID: " + getId() + ") : " + getDescription();
+		return "Species " + getName() + " " + " (ID: " + getId() + ") : " + getDescription() + " Speaks " + getLanguage() + ".";
 	}
 	
 	@Override

@@ -5,6 +5,8 @@
  * Assignment One: Class Design
  */
 
+import java.util.Comparator;
+
 public class Employee extends Alien {
 	/*
 	 * Employees are a generic class for workers but may be instaniated as generic laborers.
@@ -21,6 +23,20 @@ public class Employee extends Alien {
 	
 	public Employee(int inID, String inFirstName, String inLastName, String inAddress, String inCity, Planet inPlanet) {
 		super(inID, inFirstName, inLastName, inAddress, inCity, inPlanet);
+	}
+	
+	// M3 Comparator
+	public final static Comparator<Employee> NAME_COMPARATOR = new EmployeeNameComparator();
+	
+	private static class EmployeeNameComparator implements Comparator<Employee> {
+		@Override
+		public int compare(Employee e1, Employee e2) {
+			// test for same last name
+			if (e1.getLastName().compareToIgnoreCase(e2.getLastName()) == 0) {
+				return e1.getFirstName().compareToIgnoreCase(e2.getFirstName());
+			}
+			return e1.getLastName().compareToIgnoreCase(e2.getLastName());
+		}
 	}
 	
 	public Pharmacy getPharmacy() {

@@ -103,6 +103,7 @@ public class Pharmacy {
 	public void hire(Employee inEmployee) {
 		employees = getEmployees();
 		employees.add(inEmployee);
+		inEmployee.setPharmacy(this);
 		System.out.println(getLocalName() + " has hired " + inEmployee.getClass().getName() + " " + inEmployee.getFirstName() + " " + inEmployee.getLastName());
 		// M2 HOMEWORK STATIC
 		if (inEmployee.getClass().getName() == "Pharmacist") {

@@ -12,6 +12,8 @@ public class Disease {
 	private String name;
 	private String description;
 	private ArrayList<Species> affectedSpecies;
+	// M3 USING STRATEGY
+	private DiseaseEvolver diseaseEvolver;
 	
 	public Disease(int inId, String inName, String inDescription, ArrayList<Species> inAffectedSpecies) {
 		this.id = inId;
@@ -64,5 +66,10 @@ public class Disease {
 	
 	public void goActive() {
 		System.out.println(getName() + " has gone active!");
+	}
+
+	// M3 USING STRATEGY
+	public void evolve() {
+		this.diseaseEvolver.evolve();
 	}
 }

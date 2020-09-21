@@ -24,24 +24,25 @@ public class AlienPharmacyDriver {
 		Planet planet_02 = new Planet(2, "Al'Samik", "An aquatic world teeming with hundreds of species and many cross-species diseases.", Planet.PlanetMass.DENSE, Planet.Terraform.AQUATIC);
 		System.out.println(planet_02);
 		
+		// M3 USING BUILDER
 		// instantiate a Species
-		Species species_01 = new Species(1, "Greelock", "An intelligent form of moving carbonite.");
+		Species species_01 = new Species.SpeciesBuilder(1, "Greelock", "An intelligent form of moving carbonite.").language("Rumble").build();
 		System.out.println(species_01);
 
 		// instantiate another Species
-		Species species_02 = new Species(2, "Thresher", "An aquatic lifeform with tentacles.");
+		Species species_02 = new Species.SpeciesBuilder(2, "Thresher", "An aquatic lifeform with tentacles.").build();
 		System.out.println(species_02);
 
 		// instantiate another Species
-		Species species_03 = new Species(3, "Wyveraxx", "A large flying creature with leathery wings and talons. Breathes fire when threatened.");
+		Species species_03 = new Species.SpeciesBuilder(3, "Wyveraxx", "A large flying creature with leathery wings and talons. Breathes fire when threatened.").build();
 		System.out.println(species_03);
 
 		// instantiate another Species
-		Species species_04 = new Species(4, "Vookies", "Hulking furry bipeds preferring an arboreal habitat.");
+		Species species_04 = new Species.SpeciesBuilder(4, "Vookies", "Hulking furry bipeds preferring an arboreal habitat.").language("Oeuueau").build();
 		System.out.println(species_04);
 		
 		// instantiate another Species
-		Species species_05 = new Species(5, "Canpyres", "Parasitical nocturnal creatures with glowing blue eyes that feed on ichor.");
+		Species species_05 = new Species.SpeciesBuilder(5, "Canpyres", "Parasitical nocturnal creatures with glowing blue eyes that feed on ichor.").language("Chitter").build();
 		System.out.println(species_05);
 		
 		// instantiate Patient 1
@@ -71,6 +72,11 @@ public class AlienPharmacyDriver {
 		// instantiate a Pharmacist (grandfather class of Alien)
 		Pharmacist pharmacist_01 = new Pharmacist(5001, "Uugla", "Johnson", "10 Granite Glarp", "Quarryton", planet_01, 10000, null, 4);
 		System.out.println(pharmacist_01);
+
+		// instantiate another couple Employees
+		Employee emp_02 = new Employee(3002, "Glurp", "Adams", "23 Comet Voop", "Stardust", planet_01, 4500, null);
+		Employee emp_03 = new Employee(3003, "Skork", "McGee", "10023 Spark Blurg", "Stardust", planet_01, 4300, null);
+		Employee emp_04 = new Employee(3004, "Burpla", "McGee", "10023 Spark Blurg", "Stardust", planet_01, 4900, null);
 		
 		// instantiate a Medication
 		ArrayList<Medication> contraindications_01 = new ArrayList<Medication>();
@@ -111,8 +117,7 @@ public class AlienPharmacyDriver {
 		Medication med_07 = new Buzzies(20002, "QBuzz", "WARNING: Abuse potential. Treats combustive temperature dysregulation.", contraindications_07, 2, med_05);
 		System.out.println(med_07);
 		
-		
-		
+		// M3 USING FACTORY		
 		// instantiate a Disease
 		ArrayList<Species> species_list_01 = new ArrayList<Species>();
 		species_list_01.add(species_01);
@@ -189,6 +194,9 @@ public class AlienPharmacyDriver {
 		aliens.add(emp_01);
 		// Alien >> Employee >> Pharmacist
 		aliens.add(pharmacist_01);
+		aliens.add(emp_02);
+		aliens.add(emp_03);
+		aliens.add(emp_04);
 		
 		ArrayList<Disease> diseases = new ArrayList<Disease>();
 		diseases.add(disease_01);
@@ -211,6 +219,9 @@ public class AlienPharmacyDriver {
 		// hire emp_01 and pharmacist_01 at pharmacy_01 using downcasting
 		pharmacy_01.hire((Employee)aliens.get(3));
 		pharmacy_01.hire((Employee)aliens.get(4));
+		pharmacy_01.hire((Employee)aliens.get(5));
+		pharmacy_01.hire((Employee)aliens.get(6));
+		pharmacy_01.hire((Employee)aliens.get(7));
 		
 		// M2 HOMEWORK STATIC
 		Pharmacist.displayAvailablePharmacistCount();
@@ -268,6 +279,11 @@ public class AlienPharmacyDriver {
 		System.out.println(test_meds);
 		Collections.sort(test_meds);
 		System.out.println(test_meds);
+		
+		// M3 USING COMPARATOR - employee list is unsorted before but sorted by last name and then first name if last names match (ex: McGee)
+		System.out.println(pharmacy_01.getEmployees());
+		Collections.sort(pharmacy_01.getEmployees(), Employee.NAME_COMPARATOR);
+		System.out.println(pharmacy_01.getEmployees());
 	}
 
 }
